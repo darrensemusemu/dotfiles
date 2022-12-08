@@ -1,0 +1,12 @@
+[submodule "src/.vim/pack/git-plugins/opt/onedark.vim"]
+	path = src/.vim/pack/git-plugins/opt/onedark.vim
+	url = git@github.com:joshdick/onedark.vim.git
+[submodule "src/.vim/pack/git-plugins/start/ale"]
+	path = src/.vim/pack/git-plugins/start/ale
+	url = git@github.com:dense-analysis/ale.git
+[submodule "src/.vim/pack/git-plugins/start/vim-polyglot"]
+	path = src/.vim/pack/git-plugins/start/vim-polyglot
+	url = git@github.com:sheerun/vim-polyglot.git
+[submodule "src/.vim/pack/git-plugins/start/vim-tmux-navigator"]
+	path = src/.vim/pack/git-plugins/start/vim-tmux-navigator
+	url = git@github.com:christoomey/vim-tmux-navigator.git

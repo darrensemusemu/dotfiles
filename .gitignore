@@ -1,1 +1,5 @@
 .DS_Store
+
+# Vim netrw history file
+.netrwhist
+
