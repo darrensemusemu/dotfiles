@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
 
 set -e
+set -o errtrace
 
-export HOMEBREW_NO_AUTO_UPDATE=1
+trap cleanup EXIT
+
+cleanup () {
+	exit_code=$?
+	if [[ ${exit_code} > 0 ]]; then
+		echo "[ERROR]: exited with code: $exit_code, inspect log.txt"
+	else 
+		echo "[INFO]: setup completed success"
+	fi
+}
+
 
 platform="unknown"
 
@@ -12,10 +23,24 @@ elif [[ $"$OSTPYE" == "linux-gnu"* ]]; then
 	platform="linux"
 else
 	echo "[FAIL]: Unsupprted/unknown platform" >&2
-	exit -1
+	exit 1
 fi
 
-# Checks if program and install the programmig
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+packages_macos=()
+packages_macos[0]="common-all::brew install clang-format ctags llvm go yarn zsh tree tmux"
+# packages_macos[1]="iterm2::brew install --cask iterm2 --force"
+
+packages_linux=()
+
+packages_other=()
+packages_other[0]="nvm::./scripts/nvm.sh"													# NVM - Node Version Manager
+packages_other[1]="omz::./scripts/omz.sh"													# Oh-My-ZSH
+packages_other[2]="goimports::go install golang.org/x/tools/cmd/goimports@latest"			# Goimports formatter
+packages_other[3]="checkmake::go install github.com/mrtazz/checkmake/cmd/checkmake@latest" 	# Markdown linter
+packages_other[4]="cspell::npm install -g cspell"											# CSpell  'Grammar' checker
+
 package_exists() {
 	if ! command -v $1 &>/dev/null; then
 		echo "[INFO]: '$1' not found, installing..."
@@ -26,28 +51,26 @@ package_exists() {
 	fi
 }
 
-packages_macos=()
-packages_macos[0]="common::brew install zsh ctags tree"
-packages_macos[1]="iterm2::brew install --cask iterm2 --force"
-
 packages_install() {
-	echo "[INFO]: installing brew"
 	arr=("$@")
 	for i in "${arr[@]}"; do
 		key="${i%::*}"
 		val="${i##*::}"
 		echo "[INFO]: Instaling '$key' w/ '$val' ....'"
-		command $val #&> /dev/null
+		if ! package_exists $key; then
+			command $val > log.txt
+		fi
+
 	done
 }
 
 if [[ "$platform" == "macos" ]]; then
 	packages_install "${packages_macos[@]}"
-elif [[ "$platform" == "macos" ]]; then
+	echo "macosisin"
+elif [[ "$platform" == "linux" ]]; then
 	echo "[FAIL]: platform not yet implemented/supported"
 fi
 
-if ! package_exists "omz"; then
-	rm -rf /Users/darrensemusemu/.oh-my-zsh
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-fi
+packages_install "${packages_other[@]}"
+
+exit 0
