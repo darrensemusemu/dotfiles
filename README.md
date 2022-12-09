@@ -10,7 +10,7 @@ Setup for my working environment
 - Vim 8+: update to at least vim 8+
 
 
-Linus
+Linux
 
 - Not yet implemented/supported
 
