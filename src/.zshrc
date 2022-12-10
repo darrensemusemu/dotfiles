@@ -101,10 +101,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # pure omz theme
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
+fpath+=($HOME/.zsh/pure)
 autoload -U promptinit; promptinit
 prompt pure
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
 
 # nvm
 export NVM_DIR="$HOME/.nvm"

@@ -19,3 +19,15 @@
 [submodule "src/.tmux/plugins/vim-tmux-navigator"]
 	path = src/.tmux/plugins/vim-tmux-navigator
 	url = git@github.com:christoomey/vim-tmux-navigator.git
+[submodule "src/oh-my-zsh"]
+	path = src/oh-my-zsh
+	url = git@github.com:ohmyzsh/ohmyzsh.git
+[submodule "src/.oh-my-zsh"]
+	path = src/.oh-my-zsh
+	url = git@github.com:ohmyzsh/ohmyzsh.git
+[submodule "src/.zsh/zsh-autosuggestions"]
+	path = src/.zsh/zsh-autosuggestions
+	url = git@github.com:zsh-users/zsh-autosuggestions.git
+[submodule "src/.zsh/pure"]
+	path = src/.zsh/pure
+	url = git@github.com:sindresorhus/pure.git

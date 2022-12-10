@@ -5,11 +5,11 @@ set -o errtrace
 
 trap cleanup EXIT
 
-cleanup () {
+cleanup() {
 	exit_code=$?
 	if [[ ${exit_code} > 0 ]]; then
 		echo "[ERROR]: exited with code: $exit_code, inspect log.txt"
-	else 
+	else
 		echo "[INFO]: setup completed success"
 	fi
 }
@@ -35,7 +35,6 @@ packages_linux=()
 
 packages_other=()
 packages_other[0]="nvm::./scripts/nvm.sh" # NVM - Node Version Manager
-packages_other[1]="omz::./scripts/omz.sh" # Oh-My-ZSH
 packages_other[2]="goimports::go install golang.org/x/tools/cmd/goimports@latest" # Goimports formatter
 packages_other[3]="checkmake::go install github.com/mrtazz/checkmake/cmd/checkmake@latest" # Markdown linter
 packages_other[4]="cspell::npm install -g cspell" # CSpell  'Grammar' checker
@@ -57,7 +56,7 @@ packages_install_cmd() {
 		val="${i##*::}"
 		echo "[INFO]: Instaling '$key' w/ '$val' ....'"
 		if ! package_exists $key; then
-			command $val > log_installation.txt
+			command $val >log_installation.txt
 		fi
 	done
 }
@@ -65,7 +64,6 @@ packages_install_cmd() {
 packages_install() {
 	if [[ "$platform" == "macos" ]]; then
 		packages_install_cmd "${packages_macos[@]}"
-		echo "macosisin"
 	elif [[ "$platform" == "linux" ]]; then
 		echo "[FAIL]: platform not yet implemented/supported"
 	fi
@@ -78,21 +76,23 @@ syslink_srcdir() {
 	rm -rf ../log_syslinks.txt
 
 	for file_name in .[!.]* *; do
-		file_path="$HOME/.dotfiles/$file_name" 
-		if [[ -e "$file_path" ]]; then 
+		file_path="$HOME/$file_name"
+		if [[ -e "$file_path" ]]; then
 			mkdir -p "$HOME/.dotfiles.old"
 			echo "[INFO]: file exists '$file_name', renaming to ~/.dotfiles.old/$file_name"
 			rm -rf "$HOME/.dotfiles.old/$file_name"
 			mv "$file_path" "$HOME/.dotfiles.old/$file_name"
 		fi
 
-		file_path_curr="$(pwd)/$file_name" 
-		ln -sf $file_path_curr "$HOME/$file_name" 
-		echo $file_path_curr >> ../log_syslinks.txt
+		file_path_curr="$(pwd)/$file_name"
+		ln -sf $file_path_curr "$HOME/$file_name"
+		echo $file_path_curr >>../log_syslinks.txt
 	done
 
 	cd - &>/dev/null
 }
+
+git submodule update --init >log_installation.txt
 
 packages_install
 
