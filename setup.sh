@@ -28,7 +28,7 @@ fi
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 packages_macos=()
-packages_macos[0]="common-all::brew install clang-format ctags llvm go yarn zsh tree tmux"
+packages_macos[0]="common-all::brew install clang-format ctags go yarn zsh tree tmux"
 # packages_macos[1]="iterm2::brew install --cask iterm2 --force"
 
 packages_linux=()
