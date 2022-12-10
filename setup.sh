@@ -14,7 +14,6 @@ cleanup () {
 	fi
 }
 
-
 platform="unknown"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -35,11 +34,11 @@ packages_macos[0]="common-all::brew install clang-format ctags llvm go yarn zsh 
 packages_linux=()
 
 packages_other=()
-packages_other[0]="nvm::./scripts/nvm.sh"													# NVM - Node Version Manager
-packages_other[1]="omz::./scripts/omz.sh"													# Oh-My-ZSH
-packages_other[2]="goimports::go install golang.org/x/tools/cmd/goimports@latest"			# Goimports formatter
-packages_other[3]="checkmake::go install github.com/mrtazz/checkmake/cmd/checkmake@latest" 	# Markdown linter
-packages_other[4]="cspell::npm install -g cspell"											# CSpell  'Grammar' checker
+packages_other[0]="nvm::./scripts/nvm.sh" # NVM - Node Version Manager
+packages_other[1]="omz::./scripts/omz.sh" # Oh-My-ZSH
+packages_other[2]="goimports::go install golang.org/x/tools/cmd/goimports@latest" # Goimports formatter
+packages_other[3]="checkmake::go install github.com/mrtazz/checkmake/cmd/checkmake@latest" # Markdown linter
+packages_other[4]="cspell::npm install -g cspell" # CSpell  'Grammar' checker
 
 package_exists() {
 	if ! command -v $1 &>/dev/null; then
@@ -51,26 +50,52 @@ package_exists() {
 	fi
 }
 
-packages_install() {
+packages_install_cmd() {
 	arr=("$@")
 	for i in "${arr[@]}"; do
 		key="${i%::*}"
 		val="${i##*::}"
 		echo "[INFO]: Instaling '$key' w/ '$val' ....'"
 		if ! package_exists $key; then
-			command $val > log.txt
+			command $val > log_installation.txt
 		fi
-
 	done
 }
 
-if [[ "$platform" == "macos" ]]; then
-	packages_install "${packages_macos[@]}"
-	echo "macosisin"
-elif [[ "$platform" == "linux" ]]; then
-	echo "[FAIL]: platform not yet implemented/supported"
-fi
+packages_install() {
+	if [[ "$platform" == "macos" ]]; then
+		packages_install_cmd "${packages_macos[@]}"
+		echo "macosisin"
+	elif [[ "$platform" == "linux" ]]; then
+		echo "[FAIL]: platform not yet implemented/supported"
+	fi
 
-packages_install "${packages_other[@]}"
+	packages_install_cmd "${packages_other[@]}"
+}
+
+syslink_srcdir() {
+	cd src &>/dev/null
+	rm -rf ../log_syslinks.txt
+
+	for file_name in .[!.]* *; do
+		file_path="$HOME/.dotfiles/$file_name" 
+		if [[ -e "$file_path" ]]; then 
+			mkdir -p "$HOME/.dotfiles.old"
+			echo "[INFO]: file exists '$file_name', renaming to ~/.dotfiles.old/$file_name"
+			rm -rf "$HOME/.dotfiles.old/$file_name"
+			mv "$file_path" "$HOME/.dotfiles.old/$file_name"
+		fi
+
+		file_path_curr="$(pwd)/$file_name" 
+		ln -sf $file_path_curr "$HOME/$file_name" 
+		echo $file_path_curr >> ../log_syslinks.txt
+	done
+
+	cd - &>/dev/null
+}
+
+packages_install
+
+syslink_srcdir
 
 exit 0

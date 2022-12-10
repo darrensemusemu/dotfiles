@@ -3,4 +3,5 @@
 # Vim netrw history file
 .netrwhist
 
-log.txt
+# Setup log files
+log_*.txt
