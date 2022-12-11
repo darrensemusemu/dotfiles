@@ -35,9 +35,9 @@ packages_linux=()
 
 packages_other=()
 packages_other[0]="nvm::./scripts/nvm.sh" # NVM - Node Version Manager
-packages_other[2]="goimports::go install golang.org/x/tools/cmd/goimports@latest" # Goimports formatter
-packages_other[3]="checkmake::go install github.com/mrtazz/checkmake/cmd/checkmake@latest" # Markdown linter
-packages_other[4]="cspell::npm install -g cspell" # CSpell  'Grammar' checker
+packages_other[1]="goimports::go install golang.org/x/tools/cmd/goimports@latest"          # Goimports formatter
+packages_other[2]="checkmake::go install github.com/mrtazz/checkmake/cmd/checkmake@latest" # Markdown linter
+packages_other[3]="cspell::npm install -g cspell"                                          # CSpell  'Grammar' checker
 
 package_exists() {
 	if ! command -v $1 &>/dev/null; then
