@@ -103,3 +103,9 @@ packloadall
 " All messages and errors will be ignored.
 silent! helptags ALL
 
+
+" File type detection
+augroup project
+  autocmd!
+  autocmd BufRead,BufNewFile *.h,*.c set filetype=c " Detect *.h as c files
+augroup END
