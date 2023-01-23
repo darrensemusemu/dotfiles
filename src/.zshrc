@@ -110,14 +110,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# go bin
-PATH="$(go env GOPATH)/bin:$PATH"
-
-# nand2tetris
-PATH="$HOME/Projects/nand2tetris/tools:$PATH"
-
-# llvm/clang
-PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-# For compilers to find llvm you may need to set:
-# export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-# export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+# Stop HomeBrew from doing anythin but update everytime, useless.
+export HOMEBREW_NO_AUTO_UPDATE=1
