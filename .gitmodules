@@ -31,6 +31,6 @@
 [submodule "src/.zsh/plugins/zsh-autosuggestions"]
 	path = src/.zsh/plugins/zsh-autosuggestions
 	url = git@github.com:zsh-users/zsh-autosuggestions.git
-[submodule "src/.vim/pack/git-plugins/omnisharp-vim"]
-	path = src/.vim/pack/git-plugins/omnisharp-vim
+[submodule "src/.vim/pack/git-plugins/start/omnisharp-vim"]
+	path = src/.vim/pack/git-plugins/start/omnisharp-vim
 	url = git@github.com:OmniSharp/omnisharp-vim.git

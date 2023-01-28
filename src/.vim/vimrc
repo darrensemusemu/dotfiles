@@ -84,11 +84,20 @@ let g:ale_fix_on_save = 1
 let g:ale_fixers = {
 \   '*': ['trim_whitespace'],
 \   'c': ["clang-format"],
+\   'cs': ["clang-format"],
 \   'go': ["goimports"],
 \   'Makefile': ["checkmake"],
 \   'md': ["cspell"],
 \}
 
+let g:ale_linters = {
+\ 'cs': ['OmniSharp']
+\}
+
+
+" Use the stdio version of OmniSharp-roslyn - this is the default
+let g:OmniSharp_server_stdio = 1
+let g:OmniSharp_server_use_net6 = 1
 
 colorscheme onedark " Use onedark.vim colorscheme
 

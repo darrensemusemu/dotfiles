@@ -92,9 +92,9 @@ syslink_srcdir() {
 	cd - &>/dev/null
 }
 
-git submodule update --init >log_installation.txt
+git submodule update --init --recursive >log_installation.txt
 
-packages_install
+#packages_install
 
 syslink_srcdir
 
