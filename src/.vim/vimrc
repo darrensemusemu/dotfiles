@@ -80,6 +80,10 @@ set wildmenu                   " Great command-line completion, use `<Tab>` to m
 " You should not turn this setting on if you wish to use ALE as a completion
 " source for other completion plugins, like Deoplete.
 " let g:ale_completion_enabled = 1
+
+" Omni-completion function you can use for triggering completion manually with <C-x><C-o>
+set omnifunc=ale#completion#OmniFunc
+
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
 \   '*': ['trim_whitespace'],
@@ -88,6 +92,7 @@ let g:ale_fixers = {
 \   'go': ["goimports"],
 \   'Makefile': ["checkmake"],
 \   'md': ["cspell"],
+\   'rust': ["rustfmt"],
 \}
 
 let g:ale_linters = {
