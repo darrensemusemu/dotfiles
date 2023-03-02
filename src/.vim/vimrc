@@ -60,7 +60,7 @@ set autoindent                 " Minimal automatic indenting for any filetype.
 set backspace=indent,eol,start " Intuitive backspace behavior.
 set hidden                     " Possibility to have more than one unsaved buffers.
 set incsearch                  " Incremental search, hit `<CR>` to stop.
-set number                     " Show lines numners
+set number relativenumber      " Show lines numners
 set nocompatible               " Apologies to vi :(
 set ruler                      " Shows the current line number at the bottom-right
                                " of the screen.
