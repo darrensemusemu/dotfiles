@@ -87,6 +87,7 @@ let g:ale_fixers = {
 \   '*': ['trim_whitespace'],
 \   'c': ["clang-format"],
 \   'cs': ["clang-format"],
+\   'dart': ["dart-format"],
 \   'go': ["goimports"],
 \   'Makefile': ["checkmake"],
 \   'md': ["cspell"],
