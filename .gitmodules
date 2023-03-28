@@ -34,3 +34,6 @@
 [submodule "src/.vim/pack/git-plugins/start/omnisharp-vim"]
 	path = src/.vim/pack/git-plugins/start/omnisharp-vim
 	url = git@github.com:OmniSharp/omnisharp-vim.git
+[submodule "src/.vim/pack/git-plugins/start/vim-fugitive"]
+	path = src/.vim/pack/git-plugins/start/vim-fugitive
+	url = git@github.com:tpope/vim-fugitive.git

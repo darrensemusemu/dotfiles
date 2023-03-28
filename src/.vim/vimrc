@@ -24,6 +24,8 @@ nnoremap <SPACE> <Nop>
 let mapleader=" "
 
 
+
+
 " Create 'tags' file (may need to install ctags first)
 " Enables:
 " - Use ^] to jump to tag under cursor
@@ -71,7 +73,7 @@ set wildmenu                    " Great command-line completion, use `<Tab>` to 
 
 
 " ALE Plugin
-"
+
 " Set this variable to 1 to fix files when you save them.
 " Enable completion where available.
 " This setting must be set before ALE is loaded.
@@ -79,6 +81,10 @@ set wildmenu                    " Great command-line completion, use `<Tab>` to 
 " You should not turn this setting on if you wish to use ALE as a completion
 " source for other completion plugins, like Deoplete.
 let g:ale_completion_enabled = 1
+
+if has('nvim')
+  let g:ale_use_neovim_diagnostics_api = 1
+endif
 
 " Omni-completion function you can use for triggering completion manually with <C-x><C-o>
 set omnifunc=ale#completion#OmniFunc
