@@ -8,4 +8,8 @@ Quick setup for my working environment.
 
 ## Quick Start
 
+```sh
+./setup.sh
+```
+
 Existing files are moved to `$HOME/.dotfiles.old`.
