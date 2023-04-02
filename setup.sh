@@ -25,52 +25,6 @@ else
 	exit 1
 fi
 
-export HOMEBREW_NO_AUTO_UPDATE=1
-
-packages_macos=()
-packages_macos[0]="common-all::brew install clang-format ctags go yarn zsh tree tmux"
-# packages_macos[1]="iterm2::brew install --cask iterm2 --force"
-
-packages_linux=()
-
-packages_other=()
-packages_other[0]="nvm::./scripts/nvm.sh" # NVM - Node Version Manager
-packages_other[1]="goimports::go install golang.org/x/tools/cmd/goimports@latest"          # Goimports formatter
-packages_other[2]="checkmake::go install github.com/mrtazz/checkmake/cmd/checkmake@latest" # Markdown linter
-packages_other[3]="cspell::npm install -g cspell"                                          # CSpell  'Grammar' checker
-
-package_exists() {
-	if ! command -v $1 &>/dev/null; then
-		echo "[INFO]: '$1' not found, installing..."
-		return 1
-	else
-		echo "[INFO]: '$1' already installed, continuing..."
-		return 0
-	fi
-}
-
-packages_install_cmd() {
-	arr=("$@")
-	for i in "${arr[@]}"; do
-		key="${i%::*}"
-		val="${i##*::}"
-		echo "[INFO]: Instaling '$key' w/ '$val' ....'"
-		if ! package_exists $key; then
-			command $val >log_installation.txt
-		fi
-	done
-}
-
-packages_install() {
-	if [[ "$platform" == "macos" ]]; then
-		packages_install_cmd "${packages_macos[@]}"
-	elif [[ "$platform" == "linux" ]]; then
-		echo "[FAIL]: platform not yet implemented/supported"
-	fi
-
-	packages_install_cmd "${packages_other[@]}"
-}
-
 syslink_srcdir() {
 	cd src &>/dev/null
 	rm -rf ../log_syslinks.txt
@@ -93,8 +47,6 @@ syslink_srcdir() {
 }
 
 git submodule update --init --recursive >log_installation.txt
-
-#packages_install
 
 syslink_srcdir
 
