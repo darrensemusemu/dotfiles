@@ -112,6 +112,10 @@ let g:ale_linters = {
 let g:OmniSharp_server_stdio = 1
 let g:OmniSharp_server_use_net6 = 1
 
+" Ocaml - Append this to your .vimrc to add merlin to vim's runtime-path:
+let g:opamshare = substitute(system('opam var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
 
 " Generating Vim help files
 " Put these lines at the very end of your vimrc file.
