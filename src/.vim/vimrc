@@ -113,7 +113,9 @@ let g:OmniSharp_server_use_net6 = 1
 
 " Ocaml - Append this to your .vimrc to add merlin to vim's runtime-path:
 let g:opamshare = substitute(system('opam var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+if isdirectory(g:opamshare . "/merlin/vim")
+  execute "set rtp+=" . g:opamshare . "/merlin/vim"
+endif
 
 " ALE Key bindings
 nmap <silent> <leader>k <Plug>(ale_previous_wrap)
