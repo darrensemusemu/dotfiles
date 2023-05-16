@@ -23,7 +23,7 @@ endif
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
-tnoremap <leader><Esc> <C-\><C-n> " exit terminal mode with <Esc>
+tnoremap <leader><SPACE>e <C-\><C-n> " exit terminal mode with <Esc>
 
 
 " Create 'tags' file (may need to install ctags first)
@@ -36,7 +36,8 @@ command! MakeTags !ctags -R .
 filetype plugin indent on " Enabling filetype support provides filetype-specific indenting,
 syntax on                 " syntax highlighting, omni-completion and other useful settings.
 
-colorscheme onedark       " Use onedark.vim colorscheme
+colorscheme monochrome    " Use vim-monochrome colorscheme
+"colorscheme onedark      " Use onedark.vim colorscheme
 
 
 " `matchit.vim` is built-in so let's enable it!
