@@ -115,3 +115,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # Stop HomeBrew from doing anythin but update everytime, useless.
 export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
