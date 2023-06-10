@@ -19,12 +19,6 @@
 [submodule "src/.tmux/plugins/vim-tmux-navigator"]
 	path = src/.tmux/plugins/vim-tmux-navigator
 	url = git@github.com:christoomey/vim-tmux-navigator.git
-[submodule "src/oh-my-zsh"]
-	path = src/oh-my-zsh
-	url = git@github.com:ohmyzsh/ohmyzsh.git
-[submodule "src/.oh-my-zsh"]
-	path = src/.oh-my-zsh
-	url = git@github.com:ohmyzsh/ohmyzsh.git
 [submodule "src/.zsh/pure"]
 	path = src/.zsh/pure
 	url = git@github.com:sindresorhus/pure.git
@@ -43,3 +37,6 @@
 [submodule "src/.vim/pack/git-plugins/opt/vim-monochrome"]
 	path = src/.vim/pack/git-plugins/opt/vim-monochrome
 	url = git@github.com:fxn/vim-monochrome.git
+[submodule "src/.oh-my-zsh"]
+	path = src/.oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh.git
