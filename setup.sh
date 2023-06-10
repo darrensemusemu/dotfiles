@@ -18,7 +18,7 @@ platform="unknown"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	platform="macos"
-elif [[ $"$OSTPYE" == "linux-gnu"* ]]; then
+elif [[ $"$OSTYPE" == "linux-gnu"* ]]; then
 	platform="linux"
 else
 	echo "[FAIL]: Unsupprted/unknown platform" >&2
@@ -46,7 +46,7 @@ syslink_srcdir() {
 	cd - &>/dev/null
 }
 
-git submodule update --init --recursive >log_installation.txt
+git submodule update --init --recursive --depth 1 >log_installation.txt
 
 syslink_srcdir
 
