@@ -25,6 +25,7 @@ let mapleader=" "
 
 tnoremap <leader><SPACE>e <C-\><C-n> " exit terminal mode with <Esc>
 
+runtime snippets/snippets.vim
 
 " Create 'tags' file (may need to install ctags first)
 " Enables:
