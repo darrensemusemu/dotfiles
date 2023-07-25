@@ -1,5 +1,7 @@
 .DS_Store
 
+src/.config/yarn
+
 # Vim netrw history file
 .netrwhist
 
