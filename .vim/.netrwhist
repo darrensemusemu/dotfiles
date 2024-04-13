@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/home'
+let g:netrw_dirhist_7='/home/darren'
+let g:netrw_dirhist_6='/home/darren/.dotfiles.git'
+let g:netrw_dirhist_5='/home/darren/stuff/code/zig-orm'
+let g:netrw_dirhist_4='rsync://darrensemusemu@192.168.8.101/~/Documents/GitHub/delete/'
+let g:netrw_dirhist_3='rsync://darrensemusemu@192.168.8.101/~/Documents/GitHub/'
+let g:netrw_dirhist_2='rsync://darrensemusemu@192.168.8.101/~/Documents/'
+let g:netrw_dirhist_1='scp://darrensemusemu@192.168.8.101/~/'
+let g:netrw_dirhist_0='scp://darrensemusemu@192.168.8.101/~/Projects/'
+let g:netrw_dirhist_9='scp://darrensemusemu@192.168.8.101/~/'
