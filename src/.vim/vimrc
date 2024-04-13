@@ -1,54 +1,72 @@
 
-packadd! onedark.vim
+"""
+""" BASIC
+"""
 
+"
+" various settings
+set autoindent                  " Minimal automatic indenting for any filetype.
+set backspace=indent,eol,start  " Intuitive backspace behavior.
+set hidden                      " Possibility to have more than one unsaved buffers.
+set incsearch                   " Incremental search, hit `<CR>` to stop.
+set hlsearch			              " highlight search results
+set number relativenumber       " Show lines numners
+set nocompatible                " Say NO to vi!!!
+set regexpengine=0              " Set to automatic. Helps with costly syntac highlighting (especially typescrpt).
+set ruler                       " Shows the current line number at the bottom-right of the screen.
+set path+=**                    " Search down into sub folder. Provies tab completion for file related tasks. :find & :b
+set wildmenu                    " Great command-line completion, use `<Tab>` to move around and `<CR>` to validate.
+                                " documented in: ins-completion
 
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-
-
-" Leader Key <Space>
+"
+" leader
 nnoremap <SPACE> <Nop>
-let mapleader=" "
+let mapleader=" " " Leader Key
 
-tnoremap <leader><SPACE>e <C-\><C-n> " exit terminal mode with <Esc>
+
+"
+" tabs
 nnoremap <leader>td :tabclose <Cr>
 nnoremap <leader>te :tabedit %<Cr>
 nnoremap <leader>tn :tabnew <Cr>
 
+
+"
+" terminal
+nnoremap <leader>xs :terminal ++rows=16 <Cr>
+nnoremap <leader>xv :vertical terminal <Cr>
+" <Esc> exit terminal mode with
+tnoremap <Esc> <C-W>N
+
+
+"
+" snippets
 runtime snippets/snippets.vim " quick sninpets
 runtime macros/matchit.vim " `matchit.vim` is built-in so let's enable it! & Hit `%` on `if` to jump to `else`.
 
+
+"
+" tags
 " Create 'tags' file (may need to install ctags first)
 " Enables:
 " - Use ^] to jump to tag under cursor
 " - Use g^] for ambious tags
 " - Use ^t to jump back up the tag stack
 command! MakeTags !ctags -R .
-
 filetype plugin indent on " Enabling filetype support provides filetype-specific indenting,
 syntax on                 " syntax highlighting, omni-completion and other useful settings.
 
-colorscheme habamax    "  others: monochrome, onedark
+
+"
+" colorscheme
+packadd! onedark.vim
+colorscheme onedark    "  others: monochrome, onedark
+hi Normal ctermbg=none guibg=NONE " transaparent backgroung color
+hi Terminal ctermbg=none guibg=NONE " transaparent backgroung color
 
 
-"File Browsing
-" Enables:
-" - :edit a folder to open a file browser
-" - <CR>/v/t to open in an h-split/v-split/tab
-" - check |netrw-browse-maps| for more mappings
+"
+" file browsing
 let g:netrw_banner=0        " disable annoying banner
 let g:netrw_browse_split=4  " open in prior window
 let g:netrw_altv=1          " open splits to the right
@@ -58,105 +76,57 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_winsize = 30
 
 
-" various settings
-set autoindent                  " Minimal automatic indenting for any filetype.
-set backspace=indent,eol,start  " Intuitive backspace behavior.
-set hidden                      " Possibility to have more than one unsaved buffers.
-set incsearch                   " Incremental search, hit `<CR>` to stop.
-set hlsearch			" highlight search results
-set number relativenumber       " Show lines numners
-set nocompatible                " Apologies to vi :(
-set regexpengine=0              " Set to automatic. Helps with costly syntac highlighting (especially typescrpt).
-set ruler                       " Shows the current line number at the bottom-right of the screen.
-set path+=**                    " Search down into sub folder. Provies tab completion for file related tasks. :find & :b
-set wildmenu                    " Great command-line completion, use `<Tab>` to move around and `<CR>` to validate.
-                                " documented in: ins-completion
+"""
+""" PLUGS
+"""
 
-
-" ALE Plugin
-
-" Set this variable to 1 to fix files when you save them.
-" Enable completion where available.
-" This setting must be set before ALE is loaded.
 "
-" You should not turn this setting on if you wish to use ALE as a completion
-" source for other completion plugins, like Deoplete.
+" ale
 let g:ale_completion_enabled = 1
-
-if has('nvim')
-  let g:ale_use_neovim_diagnostics_api = 1
-endif
-
-" Omni-completion function you can use for triggering completion manually with <C-x><C-o>
-set omnifunc=ale#completion#OmniFunc
-" call ale#linter#Define('cs', {
-" \   'name': 'omnni',
-" \   'lsp': 'socket',
-" \   'address': '0.0.0.0:2000',
-" \   'project_root': '/Users/darrensemusemu/.cache/omnisharp-vim/omnisharp-roslyn',
-" \})
-
 let g:ale_fix_on_save = 1
 let g:ale_floating_preview = 1
+set omnifunc=ale#completion#OmniFunc
 
-let g:ale_fixers = {
-\   '*': ['trim_whitespace'],
-\   'c': ["clang-format"],
-\   'cs': ["dotnet-format"],
-\   'dart': ["dart-format"],
-\   'go': ["goimports"],
-\   'Makefile': ["checkmake"],
-\   'md': ["cspell"],
-\   'rust': ["rustfmt"],
-\}
-
-let g:ale_linters = {
-\ 'cs': ['omnni'],
-\ 'rust': ['analyzer']
-\}
-
-" Use the stdio version of OmniSharp-roslyn - this is the default
-"let g:OmniSharp_server_stdio = 1
-"let g:OmniSharp_server_use_net6 = 1
-"let g:OmniSharp_server_use_mono = 1
-
-" Ocaml - Append this to your .vimrc to add merlin to vim's runtime-path:
-if has('opam')
-  let g:opamshare = substitute(system('opam var share'),'\n$','','''')
-  if isdirectory(g:opamshare . "/merlin/vim")
-    execute "set rtp+=" . g:opamshare . "/merlin/vim"
-  endif
-endif
-
-" ALE Key bindings
 nnoremap <silent> <leader>k <Plug>(ale_previous_wrap)
 nnoremap <silent> <leader>j <Plug>(ale_next_wrap)
 nnoremap <silent> <leader>i <Plug>(ale_hover)
 nnoremap <silent> <leader>e <Plug>(ale_detail)
 nnoremap <silent> <leader>] <Plug>(ale_go_to_definition)
 nnoremap <silent> <leader>. <Plug>(ale_import)
+:
+if has('nvim')
+  let g:ale_use_neovim_diagnostics_api = 1
+endif
+
+let g:ale_fixers = {
+\   '*': ['trim_whitespace', 'cspell'],
+\   'c': ["clang-format"],
+\   'cs': ["dotnet-format"],
+\   'go': ["goimports"],
+\   'md': ["cspell"],
+\   'rust': ["rustfmt"],
+\}
+
+let g:ale_linters = {
+\ 'cs': ['OmniSharp'],
+\ 'rust': ['analyzer']
+\}
 
 
-" Generating Vim help files
-" Put these lines at the very end of your vimrc file.
+"
+" OmniSharp
+let g:OmniSharp_server_path = 'omniSharp'
 
-" Load all plugins now.
-" Plugins need to be added to runtimepath before helptags can be generated.
-" Load all of the helptags now, after plugins have been loaded.
-" All messages and errors will be ignored.
-packloadall | silent! helptags ALL
+nnoremap <leader>c# :OmniSharp
 
 
-call ale#linter#Define('cs', {
-\   'name': 'omnni',
-\   'lsp': 'stdio',
-\   'executable': '/Users/darrensemusemu/.cache/omnisharp-vim/omnisharp-roslyn/run',
-\   'command': '%e run',
-\   'project_root': '/Users/darrensemusemu/.cache/omnisharp-vim/omnisharp-roslyn',
-\})
+"
+" Ready. Set. Go
+packloadall | helptags ALL
+
 
 " File type detection
-augroup project
-  autocmd!
-  autocmd BufRead,BufNewFile *.h,*.c set filetype=c " Detect *.h as c files
-augroup END
+" augroup project
+"   autocmd!
+"   autocmd BufRead,BufNewFile *.h,*.c set filetype=c " Detect *.h as c files
+" augroup END
