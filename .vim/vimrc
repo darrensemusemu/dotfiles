@@ -28,6 +28,10 @@ set wildmenu                    " Great command-line completion, use `<Tab>` to 
 nnoremap <SPACE> <Nop>
 let mapleader=" " " Leader Key
 
+" search
+"
+nnoremap <leader>,f :grep '<cword>' .
+nnoremap <leader>,r :%s/<cword>/
 
 "
 " tabs
@@ -92,14 +96,16 @@ let g:ale_fix_on_save = 1
 let g:ale_floating_preview = 1
 set omnifunc=ale#completion#OmniFunc
 
+
 nnoremap <silent> <leader>k <Plug>(ale_previous_wrap)
 nnoremap <silent> <leader>j <Plug>(ale_next_wrap)
 nnoremap <silent> <leader>i <Plug>(ale_hover)
 nnoremap <silent> <leader>e <Plug>(ale_detail)
 nnoremap <silent> <leader>[ <Plug>(ale_go_to_definition)
-nnoremap <silent> <leader>] <Plug>(ale_find_references)
+nnoremap <silent> <leader>] :ALEFindReferences -quickfix<Cr>
 nnoremap <silent> <leader>. <Plug>(ale_import)
-:
+
+
 if has('nvim')
   let g:ale_use_neovim_diagnostics_api = 1
 endif
