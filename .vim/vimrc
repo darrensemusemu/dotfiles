@@ -28,6 +28,12 @@ set wildmenu                    " Great command-line completion, use `<Tab>` to 
 nnoremap <SPACE> <Nop>
 let mapleader=" " " Leader Key
 
+
+" buffers
+"
+nnoremap <leader>bd :bdelete <Cr>
+nnoremap <leader>bl :buffers <Cr>
+
 " search
 "
 nnoremap <leader>,f :grep '<cword>' .
