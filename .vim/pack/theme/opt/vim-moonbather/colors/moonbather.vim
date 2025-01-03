@@ -15,7 +15,7 @@ if exists('syntax on')
     syntax reset
 endif
 
-let g:colors_name='sunbather'
+let g:colors_name='moonbather'
 
 let s:black           = { "gui": "#20111b", "cterm": "234" }
 let s:medium_gray     = { "gui": "#4e4242", "cterm": "238" }
