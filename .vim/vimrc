@@ -28,6 +28,12 @@ nnoremap <SPACE> <Nop>
 let mapleader=" " " Leader Key
 
 
+" buffers
+"
+nnoremap <leader>bd :bdelete <Cr>
+nnoremap <leader>bl :buffers <Cr>
+
+
 " search
 "
 nnoremap <leader>,f :grep '<cword>' .
@@ -93,7 +99,7 @@ let g:netrw_winsize = 30
 " ale
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
-let g:ale_floating_preview = 1
+let g:ale_floating_preview = 0
 set omnifunc=ale#completion#OmniFunc
 
 
