@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#
+# install needed system packages
+
+set -e
+
+# Get the real user's home directory even when sudo is used
+USER_HOME=$(eval echo ~${SUDO_USER:-$USER})
+
+install_dir="$USER_HOME/.darren/packages.pacman.txt"
+
+echo "][ info ][    installing packages at $install_dir" 
+
+pacman -S --needed - < "$install_dir"
+

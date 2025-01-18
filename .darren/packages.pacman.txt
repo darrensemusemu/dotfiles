@@ -1,0 +1,6 @@
+ghostty
+neovim
+vim
+tmux
+zsh
+zsh-completions
