@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#
+# create a new workspace
+
+tmux new -s `basename $PWD`

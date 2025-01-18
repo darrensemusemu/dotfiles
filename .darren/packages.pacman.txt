@@ -1,6 +1,7 @@
 ghostty
+nmap
 neovim
-vim
 tmux
+vim
 zsh
 zsh-completions
