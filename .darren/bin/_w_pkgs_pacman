@@ -9,7 +9,7 @@ USER_HOME=$(eval echo ~${SUDO_USER:-$USER})
 
 install_dir="$USER_HOME/.darren/packages.pacman.txt"
 
-echo "][ info ][    installing packages at $install_dir" 
+echo "][ info ][    installing packages at $install_dir"
 
-pacman -S --needed - < "$install_dir"
+sudo pacman -S --needed - < "$install_dir"
 

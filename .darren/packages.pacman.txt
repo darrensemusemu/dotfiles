@@ -2,6 +2,7 @@ ghostty
 nmap
 neovim
 tmux
-vim
+gvim
+xclip
 zsh
 zsh-completions

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# finds a directory
+
+find . -type d | fzf -e >&2
+
