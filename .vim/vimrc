@@ -80,7 +80,7 @@ syntax on                 " syntax highlighting, omni-completion and other usefu
 "
 " colorscheme
 packadd! onedark.vim " TODO: remove
-colorscheme sunbather    " others: monochrome, onedark
+colorscheme moonbather    " others: monochrome, onedark
 hi Normal ctermbg=none guibg=NONE " transaparent background color
 hi Terminal ctermbg=none guibg=NONE " transaparent background color
 
@@ -112,9 +112,11 @@ nnoremap <silent> <leader>k <Plug>(ale_previous_wrap)
 nnoremap <silent> <leader>j <Plug>(ale_next_wrap)
 nnoremap <silent> <leader>i <Plug>(ale_hover)
 nnoremap <silent> <leader>e <Plug>(ale_detail)
-nnoremap <silent> <leader>[ <Plug>(ale_go_to_definition)
-nnoremap <silent> <leader>] :ALEFindReferences -quickfix<Cr>
-nnoremap <silent> <leader>. <Plug>(ale_import)
+nnoremap <silent> ,gf <Plug>(ale_go_to_definition)
+nnoremap <silent> ,] :ALEFindReferences -quickfix<Cr>
+nnoremap <silent> ,. <Plug>(ale_import)
+nnoremap <silent> ,el :ALEPopulateLocList<Cr>
+nnoremap <silent> ,eq :ALEPopulateQuickfix<Cr>
 
 
 if has('nvim')
