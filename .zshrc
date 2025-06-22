@@ -1,5 +1,8 @@
-PATH="$PATH:$HOME/.darren/bin"
+typeset -U path # Remove duplicate entries from PATH
+path=($path $HOME/.darren/bin) # Append to PATH
 
+autoload -Uz compinit
+compinit
 
 
 export EDITOR='vim' # Preferred editor for local and remote sessions
@@ -9,15 +12,15 @@ bindkey -v # we can edit usin vi/vim bindings
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
 
-# Coffee Book ZSH Prompt Configuration
-# For raw zsh without Oh My Zsh
+# Colors from ghostty/themes/sunbather
+local yellow="#F3E430"      # sunbather: yellow
+local pink="#d75f87"        # sunbather: light_pink
+local blue="#008EC4"        # sunbather: dark_blue
+local gray="#A8A8A8"        # sunbather: light_gray
+local green="#10A778"       # sunbather: dark_green
+local cyan="#20A5BA"        # sunbather: dark_cyan
+local red="#C30771"         # sunbather: dark_red
 
-# Color definitions matching your palette
-local yellow="#eaa549"
-local magenta="#97522c"
-local blue="#426a79"
-local brown="#858162"
-local green="#989a9c"
 
 # Enable command substitution and parameter expansion in prompt
 setopt PROMPT_SUBST
@@ -26,6 +29,13 @@ setopt PROMPT_SUBST
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
+setopt APPEND_HISTORY      # Append history to the history file
+setopt SHARE_HISTORY       # Share history across all sessions
+setopt HIST_IGNORE_DUPS    # Do not store duplicate commands
+setopt HIST_SAVE_NO_DUPS   # Do not save duplicate commands to the history file
+setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicates first when history is full
+setopt HIST_VERIFY         # Don't execute immediately upon history expansion
+setopt HIST_FCNTL_LOCK     # Lock history file for concurrent access
 #PROMPT='%B%(?..%F{red}%?%f )%F{blue}%~ %F{green}%#%f%b '
 #RPROMPT='%B%F{red}$(git branch --show-current 2> /dev/null)%f%b'
 
@@ -41,17 +51,17 @@ function git_status() {
 
         if [[ -z "$git_repo_status" ]]; then
             # Clean repository
-            echo " %F{cyan}($branch)%f"
+            echo " %F{$cyan}($branch)%f"
         else
             # Dirty repository
-            echo " %F{red}($branch*)%f"
+            echo " %F{$red}($branch*)%f"
         fi
     fi
 }
 
 # Primary prompt
-PROMPT='][ %F{$yellow}%n%f ][ %F{$magenta}%m%f in %F{$blue}%~%f$(git_status)
-%F{$brown}➜%f '
+PROMPT='][ %F{$yellow}%n%f ][ %F{$pink}%m%f in %F{$blue}%~%f$(git_status)
++%F{$gray}➜%f '
 
 # Right prompt with timestamp
 RPROMPT='%F{$green}[%*]%f'
