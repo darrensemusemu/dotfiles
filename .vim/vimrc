@@ -7,7 +7,7 @@
 " various settings
 set autoindent                  " Minimal automatic indenting for any filetype.
 set backspace=indent,eol,start  " Intuitive backspace behavior.
-"set background=dark
+set background=dark
 set hidden                      " Possibility to have more than one unsaved buffers.
 set incsearch                   " Incremental search, hit `<CR>` to stop.
 set hlsearch			              " highlight search results
@@ -21,6 +21,11 @@ set noshowmode
 set path+=**                    " Search down into sub folder. Provies tab completion for file related tasks. :find & :b
 set wildmenu                    " Great command-line completion, use `<Tab>` to move around and `<CR>` to validate.
                                 " documented in: ins-completion
+                                "
+if has('unnamedplus')
+  set clipboard=unnamedplus
+endif
+
 
 "
 " leader
@@ -86,8 +91,8 @@ let g:netrw_banner=0        " disable annoying banner
 let g:netrw_browse_split=4  " open in prior window
 let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+" let g:netrw_list_hide=netrw_gitignore#Hide() " TODO: doesnt work anymore???
+"let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_winsize = 30
 
 
@@ -120,7 +125,7 @@ let g:ale_fixers = {
 \   '*': ['trim_whitespace'],
 \   'c': ["clang-format"],
 \   'cs': ["dotnet-format"],
-\   'go': ["goimports"],
+\   'go': ["gofmt", "goimports"],
 \   'md': ["cspell"],
 \   'rust': ["rustfmt"],
 \}
