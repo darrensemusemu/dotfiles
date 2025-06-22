@@ -1,0 +1,104 @@
+# Based on sunbather.vim (github.com/nikolvs)
+# A minimal pink colorscheme for Ghostty.
+
+# Base colors from sunbather.vim (dark background version)
+# s:black           = { "gui": "#000000", "cterm": "232" }
+# s:medium_gray     = { "gui": "#767676", "cterm": "243" }
+# s:white           = { "gui": "#F1F1F1", "cterm": "15"  }
+# s:actual_white    = { "gui": "#FFFFFF", "cterm": "231" }
+# s:subtle_black    = { "gui": "#121212", "cterm": "233" }
+# s:light_black     = { "gui": "#262626", "cterm": "235" }
+# s:lighter_black   = { "gui": "#4E4E4E", "cterm": "239" }
+# s:light_gray      = { "gui": "#A8A8A8", "cterm": "248" }
+# s:lighter_gray    = { "gui": "#C6C6C6", "cterm": "251" }
+# s:lightest_gray   = { "gui": "#EEEEEE", "cterm": "255" }
+# s:dark_pink       = { "gui": "#ff5f87", "cterm": "204" }
+# s:light_pink      = { "gui": "#d75f87", "cterm": "168" }
+# s:dark_red        = { "gui": "#C30771", "cterm": "1"   }
+# s:light_red       = { "gui": "#E32791", "cterm": "1"   }
+# s:orange          = { "gui": "#D75F5F", "cterm": "167" }
+# s:darker_blue     = { "gui": "#005F87", "cterm": "18"  }
+# s:dark_blue       = { "gui": "#008EC4", "cterm": "32"  }
+# s:blue            = { "gui": "#20BBFC", "cterm": "12"  }
+# s:light_blue      = { "gui": "#b6d6fd", "cterm": "153" }
+# s:dark_cyan       = { "gui": "#20A5BA", "cterm": "6"   }
+# s:light_cyan      = { "gui": "#4FB8CC", "cterm": "14"  }
+# s:dark_green      = { "gui": "#10A778", "cterm": "2"   }
+# s:light_green     = { "gui": "#5FD7A7", "cterm": "10"  }
+# s:light_purple    = { "gui": "#a790d5", "cterm": "140" }
+# s:yellow          = { "gui": "#F3E430", "cterm": "11"  }
+# s:light_yellow    = { "gui": "#ffff87", "cterm": "228" }
+# s:dark_yellow     = { "gui": "#A89C14", "cterm": "3"   }
+
+# Mapped Ghostty theme variables
+background = #121212
+# s:subtle_black (s:bg_very_subtle) for a slightly softer background
+
+foreground = #C6C6C6
+# s:lighter_gray (s:norm)
+
+cursor-color = #d75f87
+# s:light_pink (s:pink)
+
+cursor-text = #121212
+# s:subtle_black
+
+
+selection-background = #d75f87
+# s:light_pink (s:visual)
+
+selection-foreground = #121212
+# s:subtle_black (s:norm on dark is lighter_gray, s:norm in visual is also lighter_gray, but this makes it more readable)
+
+
+# Palette (based on 16-color XTerm palette mapping commonly used, and sunbather's dark colors)
+# Standard 8 colors
+palette = 0=#121212
+# s:subtle_black (black)
+
+palette = 1=#C30771
+# s:dark_red (red)
+
+palette = 2=#10A778
+# s:dark_green (green)
+
+palette = 3=#A89C14
+# s:dark_yellow (yellow)
+
+palette = 4=#005F87
+# s:darker_blue (blue)
+
+palette = 5=#ff5f87
+# s:dark_pink (magenta, using dark_pink for consistency)
+
+palette = 6=#20A5BA
+# s:dark_cyan (cyan)
+
+palette = 7=#A8A8A8
+# s:light_gray (white, less bright than F1F1F1)
+
+# Bright 8 colors
+palette = 8=#4E4E4E
+# s:lighter_black (bright black / dark gray)
+
+palette = 9=#E32791
+# s:light_red (bright red)
+
+palette = 10=#5FD7A7
+# s:light_green (bright green)
+
+palette = 11=#F3E430
+# s:yellow (bright yellow)
+
+palette = 12=#20BBFC
+# s:blue (bright blue)
+
+palette = 13=#d75f87
+# s:light_pink (bright magenta, using light_pink)
+
+palette = 14=#4FB8CC
+# s:light_cyan (bright cyan)
+
+palette = 15=#F1F1F1
+# s:white (bright white)
+

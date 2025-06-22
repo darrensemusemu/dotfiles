@@ -1,4 +1,13 @@
-background-opacity=0.95
-theme="Belafonte Day"
-window-theme=ghostty
+background-opacity=0.9
+custom-shader=~/.config/ghostty/trail.glsl
+theme="sunbather"
+custom-shader-animation=true
+window-decoration=none
+window-padding-x=16
+window-padding-y=16
+
+
+
+
+
 
