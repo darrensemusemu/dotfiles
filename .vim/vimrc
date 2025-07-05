@@ -80,7 +80,7 @@ syntax on                 " syntax highlighting, omni-completion and other usefu
 "
 " colorscheme
 packadd! onedark.vim " TODO: remove
-colorscheme moonbather    " others: monochrome, onedark
+colorscheme sunbather    " others: monochrome, onedark
 hi Normal ctermbg=none guibg=NONE " transaparent background color
 hi Terminal ctermbg=none guibg=NONE " transaparent background color
 
