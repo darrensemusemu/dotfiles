@@ -111,9 +111,9 @@ set omnifunc=ale#completion#OmniFunc
 nnoremap <silent> <leader>k <Plug>(ale_previous_wrap)
 nnoremap <silent> <leader>j <Plug>(ale_next_wrap)
 nnoremap <silent> <leader>i <Plug>(ale_hover)
-nnoremap <silent> <leader>e <Plug>(ale_detail)
+nnoremap <silent> ,ee <Plug>(ale_detail)
 nnoremap <silent> ,gf <Plug>(ale_go_to_definition)
-nnoremap <silent> ,] :ALEFindReferences -quickfix<Cr>
+nnoremap <silent> ,gl :ALEFindReferences -quickfix<Cr>
 nnoremap <silent> ,. <Plug>(ale_import)
 nnoremap <silent> ,el :ALEPopulateLocList<Cr>
 nnoremap <silent> ,eq :ALEPopulateQuickfix<Cr>
