@@ -11,6 +11,8 @@ if [[ -z "$1" ]]; then
 		echo "][ o7 ][ exiting ..."
 		exit 1
 	fi
+elif [[ $1 ==  "." ]]; then
+	dir=$PWD
 fi
 
 cd $dir
