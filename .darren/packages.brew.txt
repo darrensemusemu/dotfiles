@@ -1,0 +1,13 @@
+# Homebrew packages for macOS GUI applications only
+# Nix can't handle macOS .app bundles well, so we use Homebrew for these
+# Keep this list MINIMAL - use Nix for everything else!
+#
+# Install with: cat ~/.darren/packages.brew.txt | grep -v '^#' | grep -v '^$' | xargs brew install --cask
+
+# Browsers
+firefox
+librewolf
+google-chrome
+
+# Add more GUI apps here ONLY if absolutely necessary
+# Try Nix first before adding to this list!

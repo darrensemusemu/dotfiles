@@ -1,8 +1,15 @@
-ghostty
-nmap
-neovim
-tmux
-gvim
-xclip
-zsh
-zsh-completions
+# Arch Linux system packages
+# CLI tools and cross-platform packages are in ~/.darren/nix/packages.nix
+# Keep this minimal - only Arch-specific or system-level packages
+
+# Browsers (use pacman for faster security updates, not Nix)
+# Uncomment what you need:
+# firefox
+# chromium
+# librewolf          # Privacy-focused Firefox fork (AUR)
+
+# Add other Arch-specific packages here as needed:
+# base-devel
+# linux-headers
+# nvidia-dkms
+# arch-specific drivers, etc
