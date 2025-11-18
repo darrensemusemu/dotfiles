@@ -4,6 +4,9 @@
 #
 # Install with: cat ~/.darren/packages.brew.txt | grep -v '^#' | grep -v '^$' | xargs brew install --cask
 
+# Terminal
+ghostty
+
 # Browsers
 firefox
 librewolf

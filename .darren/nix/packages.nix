@@ -10,7 +10,8 @@ with pkgs; [
   vim-full                 # Vim with GUI support (gvim) - replaces 'vim'
 
   # Terminal & Shell (confirmed usage)
-  # ghostty            # Modern terminal emulator (Linux-only in nixpkgs, move to Linux section)
+  # ghostty            # On Linux: via Nix (see Linux section below)
+                       # On macOS: via Homebrew cask (see packages.brew.txt)
   tmux
   zsh
   zsh-completions
