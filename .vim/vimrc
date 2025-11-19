@@ -32,6 +32,11 @@ endif
 nnoremap <SPACE> <Nop>
 let mapleader=" " " Leader Key
 
+"
+" Quick escape with jk
+inoremap jk <Esc>
+inoremap jj <Esc>  " Some people prefer jj
+
 
 " buffers
 "
@@ -79,10 +84,10 @@ syntax on                 " syntax highlighting, omni-completion and other usefu
 
 "
 " colorscheme
-packadd! onedark.vim " TODO: remove
-colorscheme sunbather    " others: monochrome, onedark
-hi Normal ctermbg=none guibg=NONE " transaparent background color
-hi Terminal ctermbg=none guibg=NONE " transaparent background color
+" packadd! onedark.vim " TODO: remove
+colorscheme sunbather              " others: sunbather monochrome, onedark
+"hi Normal ctermbg=none guibg=NONE   " transaparent background color
+"hi Terminal ctermbg=none guibg=NONE " transaparent background color
 
 
 "

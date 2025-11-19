@@ -8,6 +8,24 @@ compinit
 export EDITOR='vim' # Preferred editor for local and remote sessions
 bindkey -v # we can edit usin vi/vim bindings
 
+# Make vim mode less awkward
+export KEYTIMEOUT=1  # Reduce delay when switching modes (default is 40)
+
+# Better searching in vim mode
+bindkey '^R' history-incremental-search-backward  # Keep ctrl-r working
+bindkey '^S' history-incremental-search-forward   # ctrl-s forward search
+
+# Home/End keys work in insert mode
+bindkey -M viins '^A' beginning-of-line
+bindkey -M viins '^E' end-of-line
+
+# Backspace and Delete work in normal mode
+bindkey -M vicmd '^?' backward-delete-char
+bindkey -M vicmd '^H' backward-delete-char
+
+# Quick escape with jk (common vim trick)
+bindkey -M viins 'jk' vi-cmd-mode
+
 # Stop HomeBrew from doing anythin but update everytime.
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
@@ -59,9 +77,21 @@ function git_status() {
     fi
 }
 
-# Primary prompt
+# Vi mode indicator
+vi_mode_prompt_info() {
+    echo "${${KEYMAP/vicmd/[N]}/(main|viins)/[I]}"
+}
+
+# Reset prompt on mode change
+function zle-keymap-select zle-line-init {
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# Primary prompt (with mode indicator)
 PROMPT='][ %F{$yellow}%n%f ][ %F{$pink}%m%f in %F{$blue}%~%f$(git_status)
-+%F{$gray}➜%f '
++%F{$gray}$(vi_mode_prompt_info)➜%f '
 
 # Right prompt with timestamp
 RPROMPT='%F{$green}[%*]%f'
@@ -84,3 +114,4 @@ RPROMPT='%F{$green}[%*]%f'
 # Autoload required modules
 #autoload -Uz add-zsh-hook
 #add-zsh-hook precmd set-cursor-shape-for-keymap
+

@@ -1,8 +1,8 @@
-background-opacity=0.9
+#background-opacity=0.9
 custom-shader=~/.config/ghostty/trail.glsl
 theme="sunbather"
 custom-shader-animation=true
-window-decoration=none
+window-decoration=auto
 window-padding-x=16
 window-padding-y=16
 
@@ -11,3 +11,4 @@ window-padding-y=16
 
 
 
+keybind = shift+enter=text:\n

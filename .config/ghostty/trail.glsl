@@ -128,10 +128,17 @@ float asciiHelicopter(vec2 p, float yPos, float size, float time) {
     return max(cockpit, max(tail, max(tailRotor, rotor)));
 }
 
+
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
     vec2 uv = fragCoord.xy / iResolution.xy;
+
+    // Keep original uv for terminal text sampling
     vec4 terminal_color = texture(iChannel0, uv);
+
+    // Create a separate UV for background generation, flipped vertically
+    vec2 bg_uv = uv;
+    bg_uv.y = 1.0 - bg_uv.y;
 
     float time = iTime * 0.02; // Slow animation speed for a relaxed feel.
 
@@ -143,31 +150,31 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     // Clouds are bright white and move slowly across the sky.
     float clouds = 0.0;
     // Two smaller clouds instead of three large ones.
-    clouds = max(clouds, asciiCloud(uv, 0.2, 0.85, 0.10, time * 0.3)); // Reduced size from 0.15
-    clouds = max(clouds, asciiCloud(uv, 0.7, 0.9, 0.12, time * 0.1)); // Reduced size from 0.15
-    // clouds = max(clouds, asciiCloud(uv, 0.5, 0.75, 0.25, time * 0.7)); // This cloud is removed.
-    // clouds = max(clouds, asciiCloud(uv, 0.5, 0.75, 0.25, time * 0.7));
+    clouds = max(clouds, asciiCloud(bg_uv, 0.2, 0.85, 0.10, time * 0.3)); // Reduced size from 0.15
+    clouds = max(clouds, asciiCloud(bg_uv, 0.7, 0.9, 0.12, time * 0.1)); // Reduced size from 0.15
+    // clouds = max(clouds, asciiCloud(bg_uv, 0.5, 0.75, 0.25, time * 0.7)); // This cloud is removed.
+    // clouds = max(clouds, asciiCloud(bg_uv, 0.5, 0.75, 0.25, time * 0.7));
     // Clouds are solid white (1.0) to contrast sharply with the dark sky.
     landscape = mix(landscape, vec3(0.2), clouds);
 
     // 2. Helicopter
-    // float helicopter = asciiHelicopter(uv, 0.6, 0.1, iTime);
+    // float helicopter = asciiHelicopter(bg_uv, 0.6, 0.1, iTime);
     // // Helicopter is dark, like a silhouette
     // landscape = mix(landscape, vec3(0.1), helicopter);
 
     // 3. Mountains (Layered in middle ground)
     // Mountains are created in layers, with distant ones being darker.
     // We use step() to create hard edges from the mountain function's output.
-    float mtn_far = asciiMountain(uv, 1.0, 0.35, 0.6);
-    float mtn_mid1 = asciiMountain(uv, 2.0, 0.25, 0.3);
-    float mtn_mid2 = asciiMountain(uv, 3.0, 0.3, 0.4);
-    float mtn_near = asciiMountain(uv, 4.0, 0.15, 0.2);
+    float mtn_far = asciiMountain(bg_uv, 1.0, 0.35, 0.6);
+    float mtn_mid1 = asciiMountain(bg_uv, 2.0, 0.25, 0.3);
+    float mtn_mid2 = asciiMountain(bg_uv, 3.0, 0.3, 0.4);
+    float mtn_near = asciiMountain(bg_uv, 4.0, 0.15, 0.2);
 
     // Mix in each mountain layer with a progressively lighter shade of gray.
-    landscape = mix(landscape, vec3(0.3), step(uv.y, mtn_far));   // Dark gray
-    landscape = mix(landscape, vec3(0.5), step(uv.y, mtn_mid1));  // Medium gray
-    landscape = mix(landscape, vec3(0.55), step(uv.y, mtn_mid2)); // Medium gray
-    landscape = mix(landscape, vec3(0.7), step(uv.y, mtn_near));  // Light gray
+    landscape = mix(landscape, vec3(0.3), step(bg_uv.y, mtn_far));   // Dark gray
+    landscape = mix(landscape, vec3(0.5), step(bg_uv.y, mtn_mid1));  // Medium gray
+    landscape = mix(landscape, vec3(0.55), step(bg_uv.y, mtn_mid2)); // Medium gray
+    landscape = mix(landscape, vec3(0.7), step(bg_uv.y, mtn_near));  // Light gray
 
     // 4. Trees (Closest in foreground)
     // A line of trees is drawn at the bottom of the scene.
@@ -177,7 +184,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
         // Stagger tree positions and sizes for a more natural look.
         float treeX = (fi / 14.0) * 1.2 - 0.1 + sin(fi) * 0.01;
         float treeSize = 0.8 + 0.4 * fract(sin(fi * 2.5) * 43.0);
-        trees = max(trees, asciiTree(uv, treeX, treeSize));
+        trees = max(trees, asciiTree(bg_uv, treeX, treeSize));
     }
     // Trees are very dark to appear as silhouettes in the foreground.
     landscape = mix(landscape, vec3(0.1), trees);
