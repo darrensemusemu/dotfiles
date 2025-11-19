@@ -1,0 +1,17 @@
+[user]
+	name = Darren Semusemu
+	email = darrensemusemu@users.noreply.github.com
+
+# Machine-specific work config (customize per machine)
+# Uncomment and update the URL pattern for your work repos:
+# [includeIf "hasconfig:remote.*.url:git@github.com:work-org/**"]
+#     path = ~/.gitconfig-work
+
+[core]
+	editor = vi
+[merge]
+	conflictstyle = zdiff3
+
+# Optional: Create ~/.gitconfig-work for work-specific email
+# [user]
+#     email = your-work-email@example.com

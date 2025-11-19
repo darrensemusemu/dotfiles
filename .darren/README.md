@@ -34,7 +34,25 @@ git --git-dir=~/.dotfiles.git --work-tree=~ checkout git-bare-repo
 alias dotfiles='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME'
 ```
 
-### 2. Install Packages
+### 2. Configure Git (Optional)
+
+The `.gitconfig` file is tracked as a template. Customize for your machine:
+
+```bash
+# Default uses GitHub no-reply email (privacy-friendly)
+# For work repos, uncomment and edit the includeIf section in ~/.gitconfig
+
+# Example: Add work-specific config
+vim ~/.gitconfig  # Uncomment and update work org URL pattern
+
+# Create ~/.gitconfig-work for work email (optional)
+cat > ~/.gitconfig-work << EOF
+[user]
+    email = your-work-email@example.com
+EOF
+```
+
+### 3. Install Packages
 
 #### macOS
 ```bash
