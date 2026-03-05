@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+#
+# env
+
+x () {
+	local cmd="$1"
+	shift
+	args="${@}"
+	case $cmd in
+    # #
+    # directories
+    # #
+    fd )
+      find . -type d | fzf
+    ;;
+
+    # #
+    # workspace
+    # #
+    ws )
+      local sumcmd=${1:""}
+      case $sumcmd in
+        ls    ) tmux ls ;;
+        kill  )  tmux kill-session -t "$2" ;;
+        att  )  tmux attach -t "${2:-$(tmux ls | fzf | cut -d: -f1)}" ;;
+        *     )
+          local dir=$( [[ -p /dev/stdin ]] && cat || echo "${1:-$PWD}" )
+          tmux new-session -s $(basename $dir) -c $dir
+        ;;
+      esac
+    ;;
+
+
+
+    # tools
+		oc | opencode )
+			nix-shell -p nodejs --run "npx -y opencode-ai@1.2.15 $args"
+		;;
+
+		codex )
+			nix-shell -p nodejs --run "npx -y @openai/codex $args"
+		;;
+
+		cc | claude )
+			nix-shell -p nodejs --run "npx -y @anthropic-ai/claude-code $args"
+		;;
+
+		gemini )
+			nix-shell -p nodejs --run "npx -y @google/gemini-cli $args"
+		;;
+
+		env )
+			local envfile="$1"
+			shift
+			( eval "$(sudo cat ~/.env/.env-"$envfile")" && "$@" )
+		;;
+	esac
+}
+
+
